@@ -1,26 +1,39 @@
 package Server;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import Regestry.TicTacToeAService;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
-public class Server implements TicTacToeAService {
-    private int game_ID;
-    private String opponent_name;
+public class Server{
 
+    /**
+     * ipaddress is used if the host and client are not in the same network.
+     */
+    private static final String ipaddress = "31.16.156.35";
+    private static final int port = 1099;
 
-    @Override
-    public HashMap<String, String> findGame(String clientName) throws RemoteException {
-        return null;
-    }
+    public static void main(String[] args) {
+        try{
+            System.out.println("server started");
 
-    @Override
-    public String makeMove(int x, int y, String gameId) throws RemoteException {
-        return null;
-    }
+            // Set hostname for the server using java Property.
+            //System.setProperty("java.rmi.server.hostname", ipaddress);
 
-    @Override
-    public ArrayList<String> fullUpdate(String gameId) throws RemoteException {
-        return null;
+            // creat an object of tictacktoeA
+            // Export tictacktoeA Object using UnicastRemoteObject.class
+            //Get the registry to register the Object
+            // binding the object in registry to bindestub
+
+            TicTacToeAImpl ticTacToeAImpl_obj= new TicTacToeAImpl();
+            TicTacToeAService stubTicTacToeA= (TicTacToeAService) UnicastRemoteObject.exportObject(ticTacToeAImpl_obj,0);
+            Registry registry= LocateRegistry.createRegistry(port);
+            registry.rebind("bindedstub",stubTicTacToeA);
+
+            System.out.println("server running");
+        }
+        catch (Exception e){
+            System.out.println("Some server error: " + e);
+        }
     }
 }
