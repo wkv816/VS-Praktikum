@@ -13,6 +13,17 @@ public class Client {
     private static final int port = 1099;
 
     public static void main(String[] args) {
+
+
+        TicTacToeGame ticTacToe = new TicTacToeGame();
+
+
+
+
+
+        if (false){  //----------------------- nur um die Gui zu testen
+
+
         try {
             System.out.println("client started");
 
@@ -32,6 +43,7 @@ public class Client {
 
         } catch (Exception e) {
             System.out.println("client side error: " + e);
+        }
         }
     }
 }
