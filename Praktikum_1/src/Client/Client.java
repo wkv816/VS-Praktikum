@@ -21,7 +21,7 @@ public class Client {
 
 
 
-        if (false){  //----------------------- nur um die Gui zu testen
+        if (true){  //----------------------- nur um die Gui zu testen
 
 
         try {
