@@ -1,5 +1,5 @@
 package Client;
 
-public class Player {
+public class TicTacToeAClient {
     private int name;
 }
